@@ -3,4 +3,4 @@
 Creating some basics applications to learn Quarkus
 
 ## Solution Diagram
-![solution diagram](./resource/poc-quarkus.drawio.png)
+![solution diagram](./resources/poc-quarkus.drawio.png)
