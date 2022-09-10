@@ -2,9 +2,11 @@ package dev.rodgaspar.core.ports;
 
 import java.util.List;
 
-import dev.rodgaspar.domain.Vehicle;
+import dev.rodgaspar.core.model.VehicleModel;
 
 public interface VehicleDomainPort {
     
-    List<Vehicle> findAll();
+    List<VehicleModel> findAll();
+
+    VehicleModel update(VehicleModel vehicleModel);
 }

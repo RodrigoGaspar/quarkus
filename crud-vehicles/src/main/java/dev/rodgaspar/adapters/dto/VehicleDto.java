@@ -2,18 +2,27 @@ package dev.rodgaspar.adapters.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
+@AllArgsConstructor
+@Getter
 @Builder
 public class VehicleDto {
     
-    @JsonProperty("modelo")
-    private String modelo;
+    private long id;
 
-    @JsonProperty("ano")
-    private int ano;
+    @JsonProperty("model")
+    private String model;
 
-    @JsonProperty("fabricante")
-    private String fabricante;
+    @JsonProperty("type")
+    private String type;
+
+    @JsonProperty("year")
+    private int year;
+
+    @JsonProperty("manufacturer")
+    private String manufacturer;
 
 }

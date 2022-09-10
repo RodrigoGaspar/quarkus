@@ -7,10 +7,14 @@ import lombok.Getter;
 @Builder
 public class VehicleModel {
 
-    private String modelo;
+    private long id;
 
-    private int ano;
+    private String model;
+    
+    private String type;
 
-    private String fabricante;
+    private int year;
+
+    private String manufacturer;
 
 }
