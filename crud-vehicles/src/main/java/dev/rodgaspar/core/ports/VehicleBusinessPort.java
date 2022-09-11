@@ -10,4 +10,6 @@ public interface VehicleBusinessPort {
 
     VehicleModel update(VehicleModel vehicleModel);
 
+    VehicleModel create(VehicleModel vehicleModel);
+
 }

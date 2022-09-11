@@ -9,7 +9,7 @@ import dev.rodgaspar.entity.Vehicle;
 
 public class VehicleConverter {
 
-    public static List<VehicleDto> toDto(List<VehicleModel> carros) {
+    public static List<VehicleDto> toDtoList(List<VehicleModel> carros) {
         return carros.stream()
                 .map(VehicleConverter::toDto)
                 .collect(Collectors.toList());
@@ -25,20 +25,20 @@ public class VehicleConverter {
                 .build();
     }
 
-    public static VehicleModel toModel(long id, VehicleDto vehicleDto) {
+    public static List<VehicleModel> toModelList(List<Vehicle> vehicles) {
+        return vehicles.stream()
+                .map(VehicleConverter::toModel)
+                .collect(Collectors.toList());
+    }
+
+    public static VehicleModel toModel(VehicleDto vehicleDto) {
         return VehicleModel.builder()
-                .id(id)
+                .id(vehicleDto.getId())
                 .model(vehicleDto.getModel())
                 .type(vehicleDto.getType())
                 .year(vehicleDto.getYear())
                 .manufacturer(vehicleDto.getManufacturer())
                 .build();
-    }
-    
-    public static List<VehicleModel> toModel(List<Vehicle> vehicles) {
-        return vehicles.stream()
-                .map(VehicleConverter::toModel)
-                .collect(Collectors.toList());
     }
 
     public static VehicleModel toModel(Vehicle vehicle) {
@@ -50,6 +50,5 @@ public class VehicleConverter {
                 .manufacturer(vehicle.getManufacturer())
                 .build();
     }
-
 
 }

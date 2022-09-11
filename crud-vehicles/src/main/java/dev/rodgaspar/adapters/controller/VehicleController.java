@@ -3,6 +3,7 @@ package dev.rodgaspar.adapters.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,6 +12,7 @@ import javax.ws.rs.Path;
 
 import org.jboss.resteasy.reactive.RestPath;
 import org.jboss.resteasy.reactive.RestResponse;
+import org.jboss.resteasy.reactive.RestResponse.Status;
 
 import dev.rodgaspar.adapters.converters.VehicleConverter;
 import dev.rodgaspar.adapters.dto.VehicleDto;
@@ -27,23 +29,27 @@ public class VehicleController {
     public RestResponse<List<VehicleDto>> listAll() {
 
         var carros = vehicleBusinessPort.listAll();
-        var carrosDto = VehicleConverter.toDto(carros);
 
-        return RestResponse.ok(carrosDto);
+        return RestResponse.ok(VehicleConverter.toDtoList(carros));
     }
 
     @PUT
     @Path("/{id}")
+    @Transactional
     public RestResponse<VehicleDto> updateVehicle(@RestPath int id,
                                                   VehicleDto vehicleDto){
-        var vehicleModel = VehicleConverter.toModel(id, vehicleDto);
+        vehicleDto.setId(id);
+        var vehicleModel = VehicleConverter.toModel(vehicleDto);
         var vehicle = vehicleBusinessPort.update(vehicleModel);
-        vehicleDto = VehicleConverter.toDto(vehicle);
-        return RestResponse.ok(vehicleDto);
+        return RestResponse.ok(VehicleConverter.toDto(vehicle));
     }
 
     @POST
-    public RestResponse<VehicleDto> createVehicle(){
-        return null;
+    @Transactional
+    public RestResponse<VehicleDto> createVehicle(VehicleDto vehicleDto){
+        var vehicleModel = VehicleConverter.toModel(vehicleDto);
+        var vehicle = vehicleBusinessPort.create(vehicleModel);
+
+        return RestResponse.status(Status.CREATED, VehicleConverter.toDto(vehicle));
     }
 }
