@@ -12,4 +12,7 @@ public interface VehicleBusinessPort {
 
     VehicleModel create(VehicleModel vehicleModel);
 
+    void delete(VehicleModel vehicleModel);
+
+    List<VehicleModel> listVehicles(String type);
 }

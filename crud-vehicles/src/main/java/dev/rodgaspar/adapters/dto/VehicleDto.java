@@ -7,6 +7,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -15,16 +20,16 @@ public class VehicleDto {
     
     private long id;
 
-    @JsonProperty("model")
+    @NotBlank(message="Model may not be blank!")
     private String model;
 
-    @JsonProperty("type")
+    @NotBlank(message="Type may not be blank!")
     private String type;
 
-    @JsonProperty("year")
+    @Min(message="Year may not be less than 1900!", value = 1900)
     private int year;
 
-    @JsonProperty("manufacturer")
+    @NotBlank(message="Manufacturer may not be blank!")
     private String manufacturer;
 
 }

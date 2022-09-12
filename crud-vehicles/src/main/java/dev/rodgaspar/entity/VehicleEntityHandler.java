@@ -42,5 +42,21 @@ public class VehicleEntityHandler implements VehicleEntityPort {
         vehicle.persist();
         return VehicleConverter.toModel(vehicle);
     }
-   
+
+    @Override
+    public void delete(VehicleModel vehicleModel) {
+        var vehicle = Vehicle.findById(vehicleModel.getId());
+        if (vehicle == null)
+            throw new NotFoundException("Vehicle not found!!");
+        vehicle.delete();
+    }
+
+    @Override
+    public List<VehicleModel> getVehicles(String type) {
+        List<Vehicle> vehicles = Vehicle.list("type",type);
+        if (vehicles.size() == 0)
+            throw new NotFoundException("Vehicle not found!!");
+        return VehicleConverter.toModelList(vehicles);
+    }
+
 }

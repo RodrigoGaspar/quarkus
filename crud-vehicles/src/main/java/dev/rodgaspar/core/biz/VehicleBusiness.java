@@ -23,12 +23,25 @@ public class VehicleBusiness implements VehicleBusinessPort {
     @Override
     public VehicleModel update(VehicleModel vehicleModel) {
         return vehicleEntity.update(vehicleModel);
-        
     }
 
     @Override
     public VehicleModel create(VehicleModel vehicleModel) {
         return vehicleEntity.save(vehicleModel);
+    }
+
+    @Override
+    public void delete(VehicleModel vehicleModel) {
+        vehicleEntity.delete(vehicleModel);
+    }
+
+    @Override
+    public List<VehicleModel> listVehicles(String type) {
+        if (type == null) {
+            return vehicleEntity.findAll();
+        } else {
+            return vehicleEntity.getVehicles(type);
+        }
     }
 
 }
