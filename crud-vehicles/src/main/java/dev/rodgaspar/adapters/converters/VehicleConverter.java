@@ -3,6 +3,7 @@ package dev.rodgaspar.adapters.converters;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dev.rodgaspar.adapters.constant.TypeEnum;
 import dev.rodgaspar.adapters.dto.VehicleDto;
 import dev.rodgaspar.core.model.VehicleModel;
 import dev.rodgaspar.entity.Vehicle;
@@ -19,7 +20,7 @@ public class VehicleConverter {
         return VehicleDto.builder()
                 .id(vehicle.getId())
                 .model(vehicle.getModel())
-                .type(vehicle.getType())
+                .type(vehicle.getType().getLabel())
                 .year(vehicle.getYear())
                 .manufacturer(vehicle.getManufacturer())
                 .build();
@@ -35,7 +36,7 @@ public class VehicleConverter {
         return VehicleModel.builder()
                 .id(vehicleDto.getId())
                 .model(vehicleDto.getModel())
-                .type(vehicleDto.getType())
+                .type(TypeEnum.valueOf(vehicleDto.getType()))
                 .year(vehicleDto.getYear())
                 .manufacturer(vehicleDto.getManufacturer())
                 .build();
@@ -45,7 +46,7 @@ public class VehicleConverter {
         return VehicleModel.builder()
                 .id(vehicle.id)
                 .model(vehicle.getModel())
-                .type(vehicle.getType())
+                .type(TypeEnum.valueOfLabel(vehicle.getType()))
                 .year(vehicle.getYear())
                 .manufacturer(vehicle.getManufacturer())
                 .build();

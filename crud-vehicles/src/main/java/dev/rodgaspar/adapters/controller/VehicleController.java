@@ -5,10 +5,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
 
-import dev.rodgaspar.core.model.VehicleModel;
-import io.quarkus.logging.Log;
 import org.jboss.resteasy.reactive.RestPath;
 import org.jboss.resteasy.reactive.RestQuery;
 import org.jboss.resteasy.reactive.RestResponse;
@@ -16,7 +19,9 @@ import org.jboss.resteasy.reactive.RestResponse.Status;
 
 import dev.rodgaspar.adapters.converters.VehicleConverter;
 import dev.rodgaspar.adapters.dto.VehicleDto;
+import dev.rodgaspar.core.model.VehicleModel;
 import dev.rodgaspar.core.ports.VehicleBusinessPort;
+import io.quarkus.logging.Log;
 
 @Path("/vehicle")
 @Consumes("application/json")
@@ -62,4 +67,6 @@ public class VehicleController {
         vehicleBusiness.delete(vehicleModel);
         return RestResponse.ok();
     }
+
+
 }

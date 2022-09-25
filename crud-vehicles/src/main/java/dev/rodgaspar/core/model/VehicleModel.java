@@ -1,5 +1,6 @@
 package dev.rodgaspar.core.model;
 
+import dev.rodgaspar.adapters.constant.TypeEnum;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,7 +12,7 @@ public class VehicleModel {
 
     private String model;
     
-    private String type;
+    private TypeEnum type;
 
     private int year;
 

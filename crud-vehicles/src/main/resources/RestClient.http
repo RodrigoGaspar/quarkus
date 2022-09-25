@@ -1,0 +1,26 @@
+### List all vehicles
+GET http://localhost:8080/vehicle
+# ?type=bike
+
+### Update vehicle
+PUT http://localhost:8080/vehicle/7
+
+{
+    "model": "Renegade",
+    "type": "car",
+    "year": 2021,
+    "manufacturer": "Jeep"
+}
+
+### Create vehicle
+POST http://localhost:8080/vehicle/
+
+{
+    "model": "Capture",
+    "type": "Car",
+    "year": 2005,
+    "manufacturer": "GM"
+}
+
+### Delete vehicle
+DELETE http://localhost:8080/vehicle/12

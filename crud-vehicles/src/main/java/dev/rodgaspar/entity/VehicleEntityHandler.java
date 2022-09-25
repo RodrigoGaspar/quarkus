@@ -25,7 +25,7 @@ public class VehicleEntityHandler implements VehicleEntityPort {
             throw new NotFoundException("Vehicle not found!!");
 
         vehicle.setModel(vehicleModel.getModel());
-        vehicle.setType(vehicleModel.getType());
+        vehicle.setType(vehicleModel.getType().getLabel());
         vehicle.setYear(vehicleModel.getYear());
         vehicle.setManufacturer(vehicleModel.getManufacturer());
 
@@ -36,7 +36,7 @@ public class VehicleEntityHandler implements VehicleEntityPort {
     public VehicleModel save(VehicleModel vehicleModel) {
         Vehicle vehicle = new Vehicle();
         vehicle.setModel(vehicleModel.getModel());
-        vehicle.setType(vehicleModel.getType());
+        vehicle.setType(vehicleModel.getType().getLabel());
         vehicle.setYear(vehicleModel.getYear());
         vehicle.setManufacturer(vehicleModel.getManufacturer());
         vehicle.persist();
